@@ -24,5 +24,5 @@ The SortByWidthDraw function can also be called to sort the line segments by wid
 SortByWidthDraw('input_image')
 ```
 Note that the input image must be in the same directory as the Python script, and should be in JPG format. The output images will also be saved in the same directory with the original image name plus the relevant suffix.
-#Future work
+# Future work
 The next step in the project is to implement the OCR module to recognize the text within the line segments. This will involve training a machine learning model on a dataset of newspaper fonts, as well as implementing a character recognition algorithm.
