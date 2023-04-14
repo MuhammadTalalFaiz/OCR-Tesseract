@@ -1,32 +1,26 @@
 # Tesseract OCR & CV2 Reading Order Recovery of Documents
-Sure, here's an example of a possible README file for the OCR project till now:
+2 / 2
 
-OCR Project
-This project aims to develop an Optical Character Recognition (OCR) system that can read text from newspaper images.
+This is an OCR (Optical Character Recognition) project which aims to identify text regions in an input image and segment them into individual lines. The project is implemented in Python using the OpenCV library.
 
-Setup
-To run the project, you need to have Python 3 installed on your machine. You also need to install some dependencies:
+The main script, OCR(), takes an input image as a parameter and performs the following steps:
 
-Copy code
-pip install opencv-python-headless numpy
-Usage
-The OCR system consists of several steps:
+Reads the input image in grayscale.
+Blurs the image using a Gaussian filter.
+Thresholds the image using Otsu's method.
+Dilates the thresholded image using a rectangular kernel to join nearby text regions.
+Detects contours in the dilated image and creates LineSegmentNode objects for each bounding rectangle.
+Identifies the hierarchy of line segments based on their spatial relationships (e.g. whether one line is above or to the left of another).
+Topologically Sorts the line segments by their width and assigns a unique number to each segment.
+Draws bounding boxes and labels for each line segment in the output image.
+The script also includes several helper functions, including is_above(), is_left_of(), is_overlapping(), and is_between(), which are used to determine the spatial relationships between line segments.
 
-Load the image and preprocess it (blur, threshold, etc.)
-Detect line segments in the image
-Sort the line segments based on their position on the page
-Perform OCR on each line segment to extract the text
-To run the entire OCR pipeline, you can use the ocr.py script:
+To use the OCR function, simply call it with the input image filename and the desired parameters for blur, kernel width, and dilation iterations. The output images will be saved to the current directory with suffixes indicating the step in the processing pipeline.
 
-Copy code
-python ocr.py input_image.jpg
-This will load the input_image.jpg file, apply the OCR pipeline, and output the recognized text to the console.
+Note that this project is a work in progress and may not produce accurate results for all input images.
 
-Current status
-The OCR system is able to detect line segments in the image and sort them based on their position on the page. However, the OCR module is not yet implemented, so the output of the pipeline is just the bounding boxes of the line segments.
-
-Future work
-The next step in the project is to implement the OCR module to recognize the text within the line segments. This will involve training a machine learning model on a dataset of newspaper fonts, as well as implementing a character recognition algorithm.
-
-Contact
-If you have any questions or feedback, feel free to contact me at [email address].
+The SortByWidthDraw function can also be called to sort the line segments by width and draw them onto the image. For example:
+```python
+SortByWidthDraw('input_image')
+```
+Note that the input image must be in the same directory as the Python script, and should be in JPG format. The output images will also be saved in the same directory with the original image name plus the relevant suffix.
