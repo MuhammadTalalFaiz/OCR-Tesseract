@@ -1,4 +1,4 @@
-# OCR-Tesseract
+# Tesseract OCR & CV2 Reading Order Recovery of Documents
 Sure, here's an example of a possible README file for the OCR project till now:
 
 OCR Project
